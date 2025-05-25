@@ -16,7 +16,6 @@ public class DailyStatusApplication {
 
 	@Configuration
 	public class AppConfig {
-
 		@Bean
 		public RestTemplate restTemplate() {
 			return new RestTemplate();

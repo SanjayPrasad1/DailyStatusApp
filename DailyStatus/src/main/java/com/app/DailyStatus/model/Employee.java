@@ -8,17 +8,17 @@ import lombok.NoArgsConstructor;
 import java.time.LocalDateTime;
 
 @Entity
-@Table(name = "employees")
+@Table(name = "employee")
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
 public class Employee {
 
-    public Long getId() {
+    public int getId() {
         return Id;
     }
 
-    public void setId(Long id) {
+    public void setId(int id) {
         Id = id;
     }
 
@@ -38,11 +38,11 @@ public class Employee {
         this.email = email;
     }
 
-    public Role getRole() {
+    public String getRole() {
         return role;
     }
 
-    public void setRole(Role role) {
+    public void setRole(String role) {
         this.role = role;
     }
 
@@ -56,21 +56,15 @@ public class Employee {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long Id;
+    private int Id;
 
     private String name;
 
     @Column(nullable = false)
     private String email;
 
-    @Enumerated(EnumType.STRING)
-    private Role role;  // Employee or Manager
+    private String role;
 
     private LocalDateTime createdAt = LocalDateTime.now();
-
-    public enum Role{
-        EMPLOYEE,
-        MANAGER
-    }
 
 }
