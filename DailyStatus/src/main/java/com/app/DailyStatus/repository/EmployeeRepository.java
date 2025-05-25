@@ -2,7 +2,6 @@ package com.app.DailyStatus.repository;
 
 import com.app.DailyStatus.model.Employee;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.RowMapper;
 import org.springframework.stereotype.Repository;
@@ -11,9 +10,6 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.Optional;
 
-//public interface EmployeeRepository extends JpaRepository<Employee, Long> {
-//    Optional<Employee> findByEmail(String email);
-//}
 @Repository
 public class EmployeeRepository{
     @Autowired
@@ -42,6 +38,12 @@ public class EmployeeRepository{
         }catch (Exception e){
             return Optional.empty();
         }
+    }
+
+    public void deleteEmployee(int id){
+        String sql = "delete from employee where id = ?";
+        jdbcTemplate.update(sql, id);
+        System.out.println("Employee deleted for id: "+id);
     }
 
     static class EmployeeRowMapper implements RowMapper<Employee> {

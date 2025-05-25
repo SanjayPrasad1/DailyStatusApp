@@ -1,11 +1,11 @@
 package com.app.DailyStatus.service;
 
-import com.app.DailyStatus.model.Employee;
 import com.app.DailyStatus.model.StatusUpdate;
 import com.app.DailyStatus.repository.StatusUpdateRepository;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class StatusUpdateService {
@@ -15,13 +15,14 @@ public class StatusUpdateService {
         this.statusUpdateRepository = statusUpdateRepository;
     }
 
-    public StatusUpdate submitStatus(StatusUpdate statusUpdate){
-        return statusUpdateRepository.save(statusUpdate);
+    public void submitStatus(StatusUpdate statusUpdate){
+        statusUpdateRepository.save(statusUpdate);
     }
-    public List<StatusUpdate> getStatusByEmployee(Employee employee){
-        return statusUpdateRepository.findByEmployee(employee);
+    public List<StatusUpdate> getStatusByEmployee(Long id){
+         return statusUpdateRepository.getStatusByEmployeeId(id);
     }
-    public List<StatusUpdate> getAllStatuses(){
-        return statusUpdateRepository.findAll();
+
+    public void deleteStatus (Long employeeId){
+        statusUpdateRepository.deleteStatus(employeeId);
     }
 }

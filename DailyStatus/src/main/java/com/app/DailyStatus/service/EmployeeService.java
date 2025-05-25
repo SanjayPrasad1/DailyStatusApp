@@ -26,25 +26,8 @@ public class EmployeeService {
         return employeeRepository.findById(id);
     }
 
+    public void deleteEmployee(int id){
+        employeeRepository.deleteEmployee(id);
+    }
+
 }
-
-//    public EmployeeService(EmployeeRepository employeeRepository) {
-//        this.employeeRepository = employeeRepository;
-//    }
-//
-//    public Employee registerEmployee(Employee employee){
-//        return employeeRepository.save(employee);
-//    }
-//    public Optional<Employee> findByEmail(String email){
-//        return employeeRepository.findByEmail(email);
-//    }
-//    public Optional<Employee> findById(Long id){
-//        return employeeRepository.findById(id);
-//    }
-//    public List<Employee> getAllEmployee(){
-//        return employeeRepository.findAll();
-//    }
-//}
-
-
-

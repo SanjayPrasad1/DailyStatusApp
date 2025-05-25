@@ -65,14 +65,6 @@ public class Employee {
 
     private String role;
 
-//    @Enumerated(EnumType.STRING)
-//    private String role;  // Employee or Manager
-
     private LocalDateTime createdAt = LocalDateTime.now();
-
-//    public enum Role{
-//        EMPLOYEE,
-//        MANAGER
-//    }
 
 }

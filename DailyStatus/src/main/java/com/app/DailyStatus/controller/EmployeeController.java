@@ -21,38 +21,26 @@ public class EmployeeController {
     }
 
     @PostMapping("/register")
-    public ResponseEntity<String> register(@RequestBody Employee emp){
+    public ResponseEntity<String> register(@RequestBody Employee emp) {
         employeeService.register(emp);
         return ResponseEntity.ok("Employee registered: ");
     }
 
     @GetMapping("/by-email")
-    public ResponseEntity<Employee> getByEmail(@RequestParam String email){
+    public ResponseEntity<Employee> getByEmail(@RequestParam String email) {
         return employeeService.findByEmail(email).map(ResponseEntity::ok)
                 .orElse(ResponseEntity.notFound().build());
     }
 
     @GetMapping("/by-id/{id}")
-    public ResponseEntity<Employee> getById(@PathVariable int id){
+    public ResponseEntity<Employee> getById(@PathVariable int id) {
         return employeeService.findById(id).map(ResponseEntity::ok)
                 .orElse(ResponseEntity.notFound().build());
     }
 
-
-//    @PostMapping("/register")
-//    public Employee registerEmployee(@RequestBody Employee employee){
-//        return employeeService.registerEmployee(employee);
-//    }
-
-
-//    @GetMapping("/{email}")
-//    public ResponseEntity<Employee> getEmployeeEmail(@PathVariable String email){
-//        return employeeService.findByEmail(email)
-//                .map(ResponseEntity::ok)
-//                .orElse(ResponseEntity.notFound().build());
+    @DeleteMapping("/byEmpId/{id}")
+    public ResponseEntity<String> deletebyId(@PathVariable int id) {
+        employeeService.deleteEmployee(id);
+        return ResponseEntity.ok("Deleted employee with id: " + id);
     }
-
-//    @GetMapping("/all")
-//    public List<Employee> getAllEmployee(){
-//        return employeeService.getAllEmployee();
-//    }
+}

@@ -1,59 +1,15 @@
-//package com.app.DailyStatus.model;
-//
-//import jakarta.persistence.*;
-//import lombok.AllArgsConstructor;
-//import lombok.Data;
-//import lombok.NoArgsConstructor;
-//
-//import java.time.LocalDateTime;
-//
-//@Entity
-//@Table(name = "status_updates")
-//@Data
-//@NoArgsConstructor
-//@AllArgsConstructor
-//public class StatusUpdate {
-//
-//    @Id
-//    @GeneratedValue(strategy = GenerationType.IDENTITY)
-//    private Long id;
-//
-//    @ManyToOne(optional = false)
-//    @JoinColumn(name = "employee_id")
-//    private Employee employee;
-//
-//    @Column(nullable = false,columnDefinition = "TEXT")
-//    private String statusText;
-//
-//    private LocalDateTime submittedAt = LocalDateTime.now();
-//
-//}
-
-
-
-
-
-
-
-
-
-
-
-
 package com.app.DailyStatus.model;
 
 import jakarta.persistence.*;
 import java.time.LocalDateTime;
 
 @Entity
+@Table(name = "daily_status")
 public class StatusUpdate {
-
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-
     private String statusText;
-
     private LocalDateTime createdAt;
 
     @ManyToOne
@@ -61,13 +17,18 @@ public class StatusUpdate {
     private Employee employee;
 
     // Constructors
-    public StatusUpdate() {}
+    public StatusUpdate(String statusText, LocalDateTime createdAt, String name) {}
 
-    public StatusUpdate(String statusText, LocalDateTime createdAt, Employee employee) {
+    public StatusUpdate(String statusText, LocalDateTime createdAt,Employee employee) {//LocalDateTime createdAt,
         this.statusText = statusText;
         this.createdAt = createdAt;
         this.employee = employee;
     }
+
+    public StatusUpdate() {
+
+    }
+
 
     // Getters and Setters
     public Long getId() {
